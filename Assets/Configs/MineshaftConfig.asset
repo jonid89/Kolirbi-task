@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067b2e50c9064b829f1c976b6aa416c7, type: 3}
+  m_Name: MineshaftConfig
+  m_EditorClassIdentifier: 
+  _baseMineshaftCost: 500
+  _mineshaftCostIncrement: 12.5
+  _maxMineshafts: 10
+  _mineshaftPrefab: {fileID: 3722619325048105815, guid: 25a367ce9dddbf546b289a5e6642c60a,
+    type: 3}

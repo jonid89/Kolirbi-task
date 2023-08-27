@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399d431b5f13a584da186e72a4c108ac, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  _mineshaftConfig: {fileID: 11400000, guid: 5539b827b23a6964999cb4e52b988340, type: 2}
+  _mineshaftWorkerConfig: {fileID: 11400000, guid: 15f2906efcac83b47805f8f29f42e8cb,
+    type: 2}
+  _elevatorWorkerConfig: {fileID: 11400000, guid: 1501df7a4cf87b943aa0af42217f84d1,
+    type: 2}
+  _warehouseWorkerConfig: {fileID: 11400000, guid: 54ec3ae534d84ae4fa71c4435fa8383e,
+    type: 2}
+  ActorUpgradePriceIncrement: 1.12
+  ActorUpgradeSkillIncrement: 1.1
+  ActorPriceIncrementPerShaft: 6
+  ActorSkillIncrementPerShaft: 3
