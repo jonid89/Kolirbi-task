@@ -2836,7 +2836,7 @@ MonoBehaviour:
   _gameConfig: {fileID: 11400000, guid: 4032399eb3cb76346a2d2aa0835262f7, type: 2}
   _hudView: {fileID: 198845203918410569}
   _cameraView: {fileID: 6487208576915971171}
-  _mineshaftView: {fileID: 0}
+  _mineSwitchView: {fileID: 1321490039}
   _elevatorView: {fileID: 377378764491910551}
   _warehouseView: {fileID: 256702530}
   _mineshaftStartingPosition: {fileID: 1397787960}
@@ -3779,6 +3779,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1321490035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7813899426783825709, guid: ac087666426c7dd4caaf7b0b22f4334b,
+    type: 3}
+  m_PrefabInstance: {fileID: 198845203918410568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1321490039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 409691137492759830, guid: ac087666426c7dd4caaf7b0b22f4334b,
+    type: 3}
+  m_PrefabInstance: {fileID: 198845203918410568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59db5f2b1bcfeb4fb7eabec832bcd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1330757800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4943,6 +4967,41 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 409691137492759830, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: _mineSwitchbutton
+      value: 
+      objectReference: {fileID: 1321490035}
+    - target: {fileID: 7610767786020382206, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.43498075
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610767786020382206, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610767786020382206, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4009434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813899426783825709, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.1913172
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813899426783825709, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813899426783825709, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.18845674
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac087666426c7dd4caaf7b0b22f4334b, type: 3}
 --- !u!114 &198845203918410569 stripped
@@ -4972,6 +5031,11 @@ PrefabInstance:
     - target: {fileID: 334602179231525610, guid: 5b497bc791ff70d4f8a962a1503621ee,
         type: 3}
       propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 377378764011755778, guid: 5b497bc791ff70d4f8a962a1503621ee,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 377378764037739386, guid: 5b497bc791ff70d4f8a962a1503621ee,
@@ -5112,6 +5176,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 871851863341168478, guid: 77a1f49a69db04b47b7802567142604e,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863341168478, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863341168478, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863341168478, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863341168478, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
@@ -5120,6 +5204,31 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 871851863952373317, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863955402027, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863955402027, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863955402027, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851863955402027, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 871851863955402027, guid: 77a1f49a69db04b47b7802567142604e,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -5129,6 +5238,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864478784708, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864478784708, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864478784708, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864478784708, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 871851864478784708, guid: 77a1f49a69db04b47b7802567142604e,
         type: 3}
@@ -5142,6 +5271,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871851864990515473, guid: 77a1f49a69db04b47b7802567142604e,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864990515473, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864990515473, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864990515473, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871851864990515473, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
@@ -5149,6 +5298,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 973192803493766462, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 973192803493766462, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 973192803493766462, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 973192803493766462, guid: 77a1f49a69db04b47b7802567142604e,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 973192803493766462, guid: 77a1f49a69db04b47b7802567142604e,
         type: 3}

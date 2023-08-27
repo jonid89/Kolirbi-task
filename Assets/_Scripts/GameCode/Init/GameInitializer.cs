@@ -15,6 +15,7 @@ namespace GameCode.Init
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private HudView _hudView;
         [SerializeField] private CameraView _cameraView;
+        [SerializeField] private MineSwitchView _mineSwitchView;
 
         [SerializeField] private ElevatorView _elevatorView;
         [SerializeField] private WarehouseView _warehouseView;
@@ -27,10 +28,14 @@ namespace GameCode.Init
             var tutorialModel = new TutorialModel();
             var financeModel = new FinanceModel();
             
+            var gameProgress = new GameProgress();
+            
             new CameraController(_cameraView, tutorialModel);
 
             //Hud
             new HudController(_hudView, financeModel, tutorialModel, disposable);
+            
+            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress);
 
             //Mineshaft
             var mineshaftCollectionModel = new MineshaftCollectionModel();
@@ -38,7 +43,7 @@ namespace GameCode.Init
             mineshaftFactory.CreateMineshaft(1,1, _mineshaftStartingPosition.position);
 
             //Elevator
-            var elevatorModel = new ElevatorModel(1, _gameConfig, financeModel, disposable);
+            var elevatorModel = new ElevatorModel(1, _gameConfig, financeModel, disposable, gameProgress);
             new ElevatorController(_elevatorView, elevatorModel, mineshaftCollectionModel, _gameConfig, disposable);
             
             //Warehouse
