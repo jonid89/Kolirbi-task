@@ -1,4 +1,4 @@
-﻿using GameCode.Mineshaft;
+using GameCode.Mineshaft;
 using GameCode.Worker;
 using UnityEngine;
 

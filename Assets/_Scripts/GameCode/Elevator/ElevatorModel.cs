@@ -13,13 +13,11 @@ namespace GameCode.Elevator
         private readonly FinanceModel _financeModel;
         private readonly IReactiveProperty<double> _upgradePrice;
         private readonly IReactiveProperty<int> _level;
-        private readonly GameProgress _gameProgress;
 
-        public ElevatorModel(int level, GameConfig config, FinanceModel financeModel, CompositeDisposable disposable, GameProgress gameProgress)
+        public ElevatorModel(int level, GameConfig config, FinanceModel financeModel, CompositeDisposable disposable)
         {
             _config = config;
             _financeModel = financeModel;
-            _gameProgress = gameProgress;
 
             _level = new ReactiveProperty<int>(level);
             StashAmount = new ReactiveProperty<double>();
@@ -48,7 +46,6 @@ namespace GameCode.Elevator
             _upgradePrice.Value *= _config.ActorUpgradePriceIncrement;
             _financeModel.DrawResource(upgradePrice);
             _level.Value++;
-            _gameProgress.SetElevatorLevel(_level.Value);
         }
         
         public double DrawResource(double amount)

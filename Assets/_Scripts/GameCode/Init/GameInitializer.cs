@@ -27,15 +27,13 @@ namespace GameCode.Init
 
             var tutorialModel = new TutorialModel();
             var financeModel = new FinanceModel();
-            
-            var gameProgress = new GameProgress();
-            
+                        
             new CameraController(_cameraView, tutorialModel);
 
             //Hud
             new HudController(_hudView, financeModel, tutorialModel, disposable);
             
-            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress);
+            var mineSwitchController = new MineSwitchController(_mineSwitchView);
 
             //Mineshaft
             var mineshaftCollectionModel = new MineshaftCollectionModel();
@@ -43,12 +41,15 @@ namespace GameCode.Init
             mineshaftFactory.CreateMineshaft(1,1, _mineshaftStartingPosition.position);
 
             //Elevator
-            var elevatorModel = new ElevatorModel(1, _gameConfig, financeModel, disposable, gameProgress);
+            var elevatorModel = new ElevatorModel(1, _gameConfig, financeModel, disposable);
             new ElevatorController(_elevatorView, elevatorModel, mineshaftCollectionModel, _gameConfig, disposable);
             
             //Warehouse
             var warehouseModel = new WarehouseModel(1, _gameConfig, financeModel, disposable);
             new WarehouseController(_warehouseView, warehouseModel, elevatorModel, _gameConfig, disposable);
+            
+            //GameProgress
+            var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, mineSwitchController, disposable);
         }
     }
 }
