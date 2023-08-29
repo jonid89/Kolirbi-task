@@ -64,5 +64,11 @@ namespace GameCode.Elevator
 
             return result;
         }
+
+        public void SetLevel(int level)
+        {
+            _level.Value = level;
+        }
+
     }
 }

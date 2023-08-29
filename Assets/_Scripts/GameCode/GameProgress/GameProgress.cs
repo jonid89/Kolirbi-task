@@ -28,22 +28,25 @@ public class GameProgress
         Subscribe();
     }
 
-    public void SetElevatorLevel(int elevatorLevel)
-    {
-        
-    }
-
     private void Subscribe()
-        {
-            //_elevatorLevel = _elevatorModel.Level;
-            
+        {            
             _elevatorModel.Level.Subscribe(level => _elevatorLevel = level)
                 .AddTo(_disposable);
 
             
             _mineSwitchController.View.MinewSwitchButton.OnClickAsObservable()
-                    .Subscribe(_ => Debug.Log("Elevator Level:" + _elevatorLevel))
+                    .Subscribe(_ => SetElevatorLevel(1) )
                     .AddTo(_disposable);
 
         }
+
+    public void SetElevatorLevel(int level)
+    {
+        Debug.Log("Previous Elevator Level:" + _elevatorLevel);
+        
+        _elevatorModel.SetLevel(level);
+        
+        Debug.Log("Current Elevator Level:" + _elevatorLevel);
+    }
+
 }
