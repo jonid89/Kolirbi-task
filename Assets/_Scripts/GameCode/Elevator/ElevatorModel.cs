@@ -21,7 +21,7 @@ namespace GameCode.Elevator
 
             _level = new ReactiveProperty<int>(level);
             StashAmount = new ReactiveProperty<double>();
-            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(config.ActorUpgradeSkillIncrement, _level.Value - 1);
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, _level.Value - 1);
             _upgradePrice = new ReactiveProperty<double>(BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1));
             CanUpgrade = _financeModel.Money
                 .Select(money => money >= _upgradePrice.Value)
@@ -40,6 +40,8 @@ namespace GameCode.Elevator
         public void Upgrade()
         {
             if (_financeModel.Money.Value < _upgradePrice.Value) return;
+            
+            Debug.Log("Elevator Level: "+_level.Value);
 
             SkillMultiplier *= _config.ActorUpgradeSkillIncrement;
             var upgradePrice = _upgradePrice.Value;
@@ -67,7 +69,12 @@ namespace GameCode.Elevator
 
         public void SetLevel(int level)
         {
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, level - 1);
             _level.Value = level;
+            _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1);
+            StashAmount.Value = 0;
+            
+            
         }
 
     }

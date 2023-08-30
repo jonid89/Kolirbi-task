@@ -33,8 +33,11 @@ namespace GameCode.Elevator
                 .Subscribe(Behave)
                 .AddTo(disposable);
 
-            workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
+            _workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
                 .AddTo(disposable);
+
+            _elevatorModel.Level.Subscribe(_ => OnLevelUpdate())
+                .AddTo(_disposable);
         }
 
         private void Behave(long tick)
@@ -81,7 +84,8 @@ namespace GameCode.Elevator
             _busy = working;
             if (!working)
             {
-                if(_workerModel.State == WorkerState.LOAD && (_workerModel.CarryingAmount.Value >= _workerModel.CarryingCapacity.Value || _targetMineshaftNumber >= _mineshaftCollectionModel.GetCount()))
+                if(_workerModel.State == WorkerState.LOAD 
+                    && (_workerModel.CarryingAmount.Value >= _workerModel.CarryingCapacity.Value || _targetMineshaftNumber >= _mineshaftCollectionModel.GetCount()))
                 {
                     _workerModel.State = WorkerState.DROP;
                     _targetMineshaftNumber = 1;
@@ -126,6 +130,13 @@ namespace GameCode.Elevator
         private double GetCurrentContainerResources(double amount)
         {
             return _mineshaftCollectionModel.GetModel(_targetMineshaftNumber).DrawResource(amount);
+        }
+
+        private void OnLevelUpdate()
+        {
+            _workerModel.CarryingAmount.Value = 0;
+            WorkerView.Position = _elevatorView.Positions.WorkerDropOffPosition;
+            
         }
     }
 }
