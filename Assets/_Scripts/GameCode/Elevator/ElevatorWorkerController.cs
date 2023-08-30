@@ -36,7 +36,8 @@ namespace GameCode.Elevator
             _workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
                 .AddTo(disposable);
 
-            _elevatorModel.Level.Subscribe(_ => OnLevelUpdate())
+
+            _elevatorModel.MineSwitching.Subscribe(_ => OnMineSwitch())
                 .AddTo(_disposable);
         }
 
@@ -132,11 +133,10 @@ namespace GameCode.Elevator
             return _mineshaftCollectionModel.GetModel(_targetMineshaftNumber).DrawResource(amount);
         }
 
-        private void OnLevelUpdate()
+        private void OnMineSwitch()
         {
             _workerModel.CarryingAmount.Value = 0;
             WorkerView.Position = _elevatorView.Positions.WorkerDropOffPosition;
-            
         }
     }
 }

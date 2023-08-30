@@ -33,8 +33,6 @@ namespace GameCode.Init
             //Hud
             new HudController(_hudView, financeModel, tutorialModel, disposable);
             
-            var mineSwitchController = new MineSwitchController(_mineSwitchView);
-
             //Mineshaft
             var mineshaftCollectionModel = new MineshaftCollectionModel();
             var mineshaftFactory = new MineshaftFactory(mineshaftCollectionModel, financeModel, _gameConfig, disposable);
@@ -47,9 +45,12 @@ namespace GameCode.Init
             //Warehouse
             var warehouseModel = new WarehouseModel(1, _gameConfig, financeModel, disposable);
             new WarehouseController(_warehouseView, warehouseModel, elevatorModel, _gameConfig, disposable);
-            
+
             //GameProgress
-            var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, mineSwitchController, disposable);
+            var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, disposable);
+
+            //MineSwitch
+            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress);
         }
     }
 }

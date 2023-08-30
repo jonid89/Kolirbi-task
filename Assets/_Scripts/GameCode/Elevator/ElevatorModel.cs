@@ -14,6 +14,9 @@ namespace GameCode.Elevator
         private readonly IReactiveProperty<double> _upgradePrice;
         private readonly IReactiveProperty<int> _level;
 
+        private readonly IReactiveProperty<bool> _mineSwitching; 
+        public IReadOnlyReactiveProperty<bool> MineSwitching => _mineSwitching;
+
         public ElevatorModel(int level, GameConfig config, FinanceModel financeModel, CompositeDisposable disposable)
         {
             _config = config;
@@ -27,6 +30,8 @@ namespace GameCode.Elevator
                 .Select(money => money >= _upgradePrice.Value)
                 .ToReadOnlyReactiveProperty()
                 .AddTo(disposable);
+            
+            _mineSwitching = new ReactiveProperty<bool>(false);
         }
 
         public double SkillMultiplier { get; set; }
@@ -67,13 +72,16 @@ namespace GameCode.Elevator
             return result;
         }
 
-        public void SetLevel(int level)
+        public void MineSwitch(int level)
         {
+            _mineSwitching.Value = true;
+            
             SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, level - 1);
             _level.Value = level;
             _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1);
             StashAmount.Value = 0;
-            
+
+            _mineSwitching.Value = false;
             
         }
 
