@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class MineSwitchView : MonoBehaviour
 {
-    [SerializeField] private Button _mineSwitchbutton;
+    [SerializeField] private List<Button> _mineSwitchButtons = new List<Button>();
     
-    public Button MinewSwitchButton => _mineSwitchbutton;
+    public List<Button> MineSwitchButtons => _mineSwitchButtons;
+
+    private void Start()
+    {
+        Debug.Log(MineSwitchButtons[1]);
+    }
+
 }
 
