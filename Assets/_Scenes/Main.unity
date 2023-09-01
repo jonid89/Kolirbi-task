@@ -5437,7 +5437,7 @@ MonoBehaviour:
   _gameConfig: {fileID: 11400000, guid: 4032399eb3cb76346a2d2aa0835262f7, type: 2}
   _hudView: {fileID: 198845203918410569}
   _cameraView: {fileID: 6487208576915971171}
-  _mineSwitchView: {fileID: 0}
+  _mineSwitchView: {fileID: 198845203918410570}
   _elevatorView: {fileID: 377378764491910551}
   _warehouseView: {fileID: 256702530}
   _mineshaftStartingPosition: {fileID: 1397787960}
@@ -10332,6 +10332,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f96d191ef984f25be1bacf34e63964f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &198845203918410570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 481329284827201511, guid: ac087666426c7dd4caaf7b0b22f4334b,
+    type: 3}
+  m_PrefabInstance: {fileID: 198845203918410568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59db5f2b1bcfeb4fb7eabec832bcd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &198845203918410573 stripped

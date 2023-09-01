@@ -14,7 +14,7 @@ public class GameProgress
     //private MineSwitchController _mineSwitchController;
     private readonly CompositeDisposable _disposable;
     
-    private int _currentMineID = 1;
+    private int _currentMineID = 0;
     private int[] _mineElevatorLevels = new int[] {1,1};
     
     private int _elevatorLevel;
@@ -43,6 +43,7 @@ public class GameProgress
 
     public void SwitchToMine(int switchMineID)
         {
+            Debug.Log("_elevatorLevel before: " +_elevatorLevel);
             //Save
             _mineElevatorLevels[_currentMineID] = _elevatorLevel;
             
@@ -52,11 +53,12 @@ public class GameProgress
             //Load
             _elevatorLevel = _mineElevatorLevels[_currentMineID];
             SetElevatorLevel(_elevatorLevel);
+            Debug.Log("_elevatorLevel after: " +_elevatorLevel);
         }
 
     public void SetElevatorLevel(int levelToSet)
     {
-        Debug.Log("Previous Elevator Level:" + _elevatorLevel);
+        //Debug.Log("Previous Elevator Level:" + _elevatorLevel);
         
         _elevatorModel.MineSwitch(levelToSet);
     }

@@ -9,10 +9,5 @@ public class MineSwitchView : MonoBehaviour
     
     public List<Button> MineSwitchButtons => _mineSwitchButtons;
 
-    private void Start()
-    {
-        Debug.Log(MineSwitchButtons[1]);
-    }
-
 }
 

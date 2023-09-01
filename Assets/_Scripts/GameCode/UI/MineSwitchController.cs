@@ -18,7 +18,6 @@ public class MineSwitchController
         
         _mineSwitchButtons = _view.MineSwitchButtons;
         AddButtonListeners();
-        /*_view.MinewSwitchButton.onClick.AddListener(OnButtonClicked);*/
     }
 
     
@@ -26,13 +25,14 @@ public class MineSwitchController
     {
         for(int i = 0; i < _mineSwitchButtons.Count; i++)
         {
-            _mineSwitchButtons[i].onClick.AddListener(() => OnButtonClicked(i));
+            int buttonIndex = i;
+            _mineSwitchButtons[i].onClick.AddListener(() => OnButtonClicked(buttonIndex));
         }
     }
 
     private void OnButtonClicked(int buttonIndex)
     {
-        // This method will be called when the button is Released
+        // This method is called when the button is Released
         _gameProgress.SwitchToMine(buttonIndex);
     }
     
