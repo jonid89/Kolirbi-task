@@ -33,5 +33,5 @@ namespace GameCode.Mineshaft
         {
             return _views[mineshaftNumber];
         }
-}
+    }
 }

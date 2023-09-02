@@ -18,6 +18,7 @@ public class MineSwitchController
         
         _mineSwitchButtons = _view.MineSwitchButtons;
         AddButtonListeners();
+        _gameProgress.SetMinesCount(_mineSwitchButtons.Count);
     }
 
     
