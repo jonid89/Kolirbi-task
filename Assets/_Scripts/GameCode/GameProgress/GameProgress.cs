@@ -15,9 +15,11 @@ public class GameProgress
     private readonly CompositeDisposable _disposable;
     
     private int _currentMineID = 0;
-    private int[] _mineElevatorLevels = new int[] {1,1};
     
+    private int[] _elevatorLevels = new int[] {1,1};
     private int _elevatorLevel;
+    private int[] _mineShaft1Levels = new int[] {1,1};
+    private int _mineShaft1Level;
 
     public GameProgress(WarehouseModel warehouseModel, ElevatorModel elevatorModel, 
         MineshaftCollectionModel mineshaftCollectionModel, CompositeDisposable disposable)
@@ -36,24 +38,27 @@ public class GameProgress
             _elevatorModel.Level.Subscribe(level => _elevatorLevel = level)
                 .AddTo(_disposable);
 
-            /*_mineSwitchController.View.MinewSwitchButton.OnClickAsObservable()
-                    .Subscribe(_ => SetElevatorLevel(1) )
-                    .AddTo(_disposable);*/
+            _mineshaftCollectionModel.GetModel(1).Level.Subscribe(level => _mineShaft1Level = level)
+                .AddTo(_disposable);
+
         }
 
     public void SwitchToMine(int switchMineID)
         {
-            Debug.Log("_elevatorLevel before: " +_elevatorLevel);
+            Debug.Log("_mineShaft1Level before: " +_mineShaft1Level);
             //Save
-            _mineElevatorLevels[_currentMineID] = _elevatorLevel;
+            _elevatorLevels[_currentMineID] = _elevatorLevel;
+            _mineShaft1Levels[_currentMineID] = _mineShaft1Level;
             
             //SetMineID
             _currentMineID = switchMineID;
             
             //Load
-            _elevatorLevel = _mineElevatorLevels[_currentMineID];
+            _elevatorLevel = _elevatorLevels[_currentMineID];
             SetElevatorLevel(_elevatorLevel);
-            Debug.Log("_elevatorLevel after: " +_elevatorLevel);
+            _mineShaft1Level = _mineShaft1Levels[_currentMineID];
+            _mineshaftCollectionModel.GetModel(1).MineSwitch(_mineShaft1Level);
+            Debug.Log("_mineShaft1Level after: " +_mineShaft1Level);
         }
 
     public void SetElevatorLevel(int levelToSet)

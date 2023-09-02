@@ -14,6 +14,7 @@ namespace GameCode.Elevator
         private readonly IReactiveProperty<double> _upgradePrice;
         private readonly IReactiveProperty<int> _level;
 
+        //MineSwitching bool to determine when mine switching is happening
         private readonly IReactiveProperty<bool> _mineSwitching; 
         public IReadOnlyReactiveProperty<bool> MineSwitching => _mineSwitching;
 

@@ -29,6 +29,10 @@ namespace GameCode.Mineshaft
 
             workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
                 .AddTo(disposable);
+
+            //When the MineSwitching bool of the _elevatorModel becomes true, the listener calls OnMineSwitch method
+            _mineshaftModel.MineSwitching.Subscribe(_ => OnMineSwitch())
+                .AddTo(_disposable);
         }
 
         private WorkerView WorkerView => _mineshaftView.WorkerView;
@@ -107,5 +111,12 @@ namespace GameCode.Mineshaft
 
             return availableAmount;
         }
+
+        private void OnMineSwitch()
+        {
+            _workerModel.CarryingAmount.Value = 0;
+            WorkerView.Position = _mineshaftView.Positions.WorkerDropOffPosition;
+        }
+
     }
 }

@@ -23,8 +23,12 @@ namespace GameCode.Mineshaft
         public IReadOnlyReactiveProperty<int> Level => _level;
         public readonly IReactiveProperty<double> StashAmount;
 
-        public double NextShaftPrice { get; }
+        public double NextShaftPrice { get; set;}
         public IReadOnlyReactiveProperty<bool> CanBuyNextShaft { get; }
+
+        //MineSwitching bool to determine when mine switching is happening
+        private readonly IReactiveProperty<bool> _mineSwitching; 
+        public IReadOnlyReactiveProperty<bool> MineSwitching => _mineSwitching;
 
         public MineshaftModel(int shaftNumber, int level, GameConfig config, FinanceModel financeModel, CompositeDisposable disposable)
         {
@@ -34,9 +38,9 @@ namespace GameCode.Mineshaft
             
             _level = new ReactiveProperty<int>(level);
             StashAmount = new ReactiveProperty<double>();
-            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, MineshaftNumber) * Mathf.Pow(config.ActorUpgradeSkillIncrement, _level.Value - 1);
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, MineshaftNumber) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, _level.Value - 1);
             
-            _upgradePrice = new ReactiveProperty<double>(BasePrice * Mathf.Pow(config.ActorPriceIncrementPerShaft, MineshaftNumber - 1)
+            _upgradePrice = new ReactiveProperty<double>(BasePrice * Mathf.Pow(_config.ActorPriceIncrementPerShaft, MineshaftNumber - 1)
                                                                    * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1));
             NextShaftPrice = config.MineshaftConfig.BaseMineshaftCost * Mathf.Pow(config.MineshaftConfig.MineshaftCostIncrement, MineshaftNumber - 1);
             CanUpgrade = _financeModel.Money
@@ -47,6 +51,8 @@ namespace GameCode.Mineshaft
                 .Select(money => money >= NextShaftPrice)
                 .ToReadOnlyReactiveProperty()
                 .AddTo(disposable);
+                
+            _mineSwitching = new ReactiveProperty<bool>(false);
         }
 
         public void Upgrade()
@@ -85,6 +91,21 @@ namespace GameCode.Mineshaft
             }
 
             return result;
+        }
+
+        public void MineSwitch(int level)
+        {
+            _mineSwitching.Value = true;
+            
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, MineshaftNumber) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, level - 1);
+            _level.Value = level;
+            _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorPriceIncrementPerShaft, MineshaftNumber - 1)
+                                        * Mathf.Pow(_config.ActorUpgradePriceIncrement, level - 1);
+            NextShaftPrice = _config.MineshaftConfig.BaseMineshaftCost * Mathf.Pow(_config.MineshaftConfig.MineshaftCostIncrement, MineshaftNumber - 1);
+            StashAmount.Value = 0;
+
+            _mineSwitching.Value = false;
+            
         }
     }
 }

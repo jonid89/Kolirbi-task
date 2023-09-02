@@ -36,7 +36,7 @@ namespace GameCode.Elevator
             _workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
                 .AddTo(disposable);
 
-
+            //When the MineSwitching bool of the _elevatorModel becomes true, the listener calls OnMineSwitch method
             _elevatorModel.MineSwitching.Subscribe(_ => OnMineSwitch())
                 .AddTo(_disposable);
         }

@@ -32,7 +32,6 @@ public class MineSwitchController
 
     private void OnButtonClicked(int buttonIndex)
     {
-        // This method is called when the button is Released
         _gameProgress.SwitchToMine(buttonIndex);
     }
     
