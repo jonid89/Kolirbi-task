@@ -15,8 +15,11 @@ namespace GameCode.Mineshaft
 
         public void RegisterMineshaft(int mineshaftNumber, MineshaftModel model, MineshaftView view)
         {
-            _views.Add(mineshaftNumber, view);
-            _models.Add(mineshaftNumber, model);
+            if(!_views.ContainsKey(mineshaftNumber))
+            {
+                _views.Add(mineshaftNumber, view);
+                _models.Add(mineshaftNumber, model);
+            }
         }
 
         public int GetCount()

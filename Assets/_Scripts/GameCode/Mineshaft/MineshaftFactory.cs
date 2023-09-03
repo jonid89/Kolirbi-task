@@ -22,10 +22,19 @@ namespace GameCode.Mineshaft
 
         public void CreateMineshaft(int mineshaftNumber, int mineshaftLevel, Vector2 position)
         {
-            var view = Object.Instantiate(_config.MineshaftConfig.MineshaftPrefab, position, Quaternion.identity);
-            var mineshaftModel = new MineshaftModel(mineshaftNumber, mineshaftLevel, _config, _financeModel, _disposable);
-            new MineshaftController(view, mineshaftModel, this, _config, _disposable);
-            _collectionModel.RegisterMineshaft(mineshaftNumber, mineshaftModel, view);
+            if(mineshaftNumber <= _collectionModel.GetCount())
+            {
+                _collectionModel.GetView(mineshaftNumber).gameObject.SetActive(true);
+                _collectionModel.GetView(mineshaftNumber).NextShaftView.gameObject.SetActive(true);
+            }
+            else
+            {
+                var view = Object.Instantiate(_config.MineshaftConfig.MineshaftPrefab, position, Quaternion.identity);
+                var mineshaftModel = new MineshaftModel(mineshaftNumber, mineshaftLevel, _config, _financeModel, _disposable);
+                new MineshaftController(view, mineshaftModel, this, _config, _disposable);
+                _collectionModel.RegisterMineshaft(mineshaftNumber, mineshaftModel, view);
+            }
+            
         }
     }
 }
