@@ -23,3 +23,4 @@ MonoBehaviour:
   ActorUpgradeSkillIncrement: 1.1
   ActorPriceIncrementPerShaft: 6
   ActorSkillIncrementPerShaft: 3
+  InitialMoneyPerMine: 50000

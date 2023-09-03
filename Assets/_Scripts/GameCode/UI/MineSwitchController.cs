@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameCode.UI;
 
 public class MineSwitchController
 {
     private readonly MineSwitchView _view;
     private readonly GameProgress _gameProgress;
+    private readonly HudController _hudController;
     private List<Button> _mineSwitchButtons = new List<Button>();
     
     public MineSwitchView View => _view;
 
-    public MineSwitchController(MineSwitchView view, GameProgress gameProgress)
+    public MineSwitchController(MineSwitchView view, GameProgress gameProgress, HudController hudController)
     {
         _view = view;
         _gameProgress = gameProgress;
+        _hudController = hudController;
         
         _mineSwitchButtons = _view.MineSwitchButtons;
         AddButtonListeners();
@@ -34,6 +37,7 @@ public class MineSwitchController
     private void OnButtonClicked(int buttonIndex)
     {
         _gameProgress.SwitchToMine(buttonIndex);
+        _hudController.SetMineID(buttonIndex);
     }
     
 

@@ -6,11 +6,15 @@ namespace GameCode.Finance
     public class FinanceModel
     {
         private readonly IReactiveProperty<double> _money;
-        public IReadOnlyReactiveProperty<double> Money => _money;
+        public IReadOnlyReactiveProperty<double> Money => _money;        
 
-        public FinanceModel()
+        private double _initialMoneyPerMine;
+        public double InitialMoneyPerMine => _initialMoneyPerMine;
+
+        public FinanceModel(double initialMoneyPerMine)
         {
-            _money = new ReactiveProperty<double>(500);
+            _initialMoneyPerMine = initialMoneyPerMine;
+            _money = new ReactiveProperty<double>(initialMoneyPerMine);
         }
 
         public void AddResource(double amount)
@@ -39,6 +43,11 @@ namespace GameCode.Finance
             }
 
             return result;
+        }
+
+        public void SetMineMoney(double amount)
+        {
+            _money.Value = amount;
         }
     }
 }

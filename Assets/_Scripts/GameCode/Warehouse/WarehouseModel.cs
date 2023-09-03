@@ -16,19 +16,24 @@ namespace GameCode.Warehouse
         private readonly IReactiveProperty<double> _upgradePrice;
         private readonly IReactiveProperty<int> _level;
 
+        //MineSwitching bool to determine when mine switching is happening
+        private readonly IReactiveProperty<bool> _mineSwitching; 
+        public IReadOnlyReactiveProperty<bool> MineSwitching => _mineSwitching;
+
         public WarehouseModel(int level, GameConfig config, FinanceModel financeModel, CompositeDisposable disposable)
         {
             _config = config;
             _financeModel = financeModel;
             
             _level = new ReactiveProperty<int>(level);
-            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(config.ActorUpgradeSkillIncrement, _level.Value - 1);
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, _level.Value - 1);
             _upgradePrice = new ReactiveProperty<double>(BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1));
             CanUpgrade = _financeModel.Money
                 .Select(money => money >= _upgradePrice.Value)
                 .ToReadOnlyReactiveProperty()
                 .AddTo(disposable);
 
+            _mineSwitching = new ReactiveProperty<bool>(false);
         }
 
         public double SkillMultiplier { get; set; }
@@ -48,6 +53,17 @@ namespace GameCode.Warehouse
             _upgradePrice.Value *= _config.ActorUpgradePriceIncrement;
             _financeModel.DrawResource(upgradePrice);
             _level.Value++;
+        }
+
+        public void MineSwitch(int level)
+        {
+            _mineSwitching.Value = true;
+            
+            SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, level - 1);
+            _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, level - 1);
+            _level.Value = level;
+
+            _mineSwitching.Value = false;
         }
     }
 }

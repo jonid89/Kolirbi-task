@@ -7,6 +7,7 @@ namespace GameCode.UI
     {
         [SerializeField] private TMP_Text _cashAmount;
         [SerializeField] private GameObject _tooltip;
+        [SerializeField] private TMP_Text _mineLabel;
 
         public double CashAmount
         {
@@ -16,6 +17,11 @@ namespace GameCode.UI
         public bool TooltipVisible
         {
             set => _tooltip.gameObject.SetActive(value);
+        }
+
+        public double MineLabel
+        {
+            set => _mineLabel.SetText("Money" + value.ToString("F0") + " :");
         }
     }
 }

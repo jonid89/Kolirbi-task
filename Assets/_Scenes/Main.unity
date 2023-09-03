@@ -1632,6 +1632,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &394464208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 198845204206892764, guid: ac087666426c7dd4caaf7b0b22f4334b,
+    type: 3}
+  m_PrefabInstance: {fileID: 198845203918410568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &400908448
 GameObject:
   m_ObjectHideFlags: 0
@@ -10195,6 +10207,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 989911878}
     m_Modifications:
+    - target: {fileID: 198845202933185789, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 170
+      objectReference: {fileID: 0}
     - target: {fileID: 198845203661073323, guid: ac087666426c7dd4caaf7b0b22f4334b,
         type: 3}
       propertyPath: m_Name
@@ -10320,6 +10337,11 @@ PrefabInstance:
       propertyPath: _mineSwitchButtons.Array.data[1]
       value: 
       objectReference: {fileID: 385711070}
+    - target: {fileID: 4102659311273505977, guid: ac087666426c7dd4caaf7b0b22f4334b,
+        type: 3}
+      propertyPath: _mineLabel
+      value: 
+      objectReference: {fileID: 394464208}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac087666426c7dd4caaf7b0b22f4334b, type: 3}
 --- !u!114 &198845203918410569 stripped

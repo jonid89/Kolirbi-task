@@ -18,6 +18,8 @@ namespace GameCode.Init
         public float ActorPriceIncrementPerShaft;
         public float ActorSkillIncrementPerShaft;
 
+        public double InitialMoneyPerMine;
+
         public IMineshaftConfig MineshaftConfig => _mineshaftConfig;
         public IWorkerConfig MineshaftWorkerConfig => _mineshaftWorkerConfig;
         public IWorkerConfig ElevatorWorkerConfig => _elevatorWorkerConfig;

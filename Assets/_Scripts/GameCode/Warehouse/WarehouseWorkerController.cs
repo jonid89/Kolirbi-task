@@ -34,6 +34,10 @@ namespace GameCode.Warehouse
 
             workerModel.CarryingAmount.Subscribe(amount => WorkerView.CarryingAmount = amount.ToString("F0"))
                 .AddTo(disposable);
+
+            //When the MineSwitching bool of the _warehouseModel becomes true, the listener calls OnMineSwitch method
+            _warehouseModel.MineSwitching.Subscribe(_ => OnMineSwitch())
+                .AddTo(_disposable);
         }
 
         private void Behave(long tick)
@@ -115,6 +119,12 @@ namespace GameCode.Warehouse
         private double GetCurrentContainerResources(double amount)
         {
             return _elevatorModel.DrawResource(amount);
+        }
+
+        private void OnMineSwitch()
+        {
+            _workerModel.CarryingAmount.Value = 0;
+            WorkerView.Position = _view.Positions.WorkerDropOffPosition;
         }
     }
 }

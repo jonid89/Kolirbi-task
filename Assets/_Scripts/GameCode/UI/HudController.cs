@@ -14,17 +14,24 @@ namespace GameCode.UI
             _view = view;
             
             financeModel.Money
-                .Subscribe(money => view.CashAmount = money)
+                .Subscribe(money => _view.CashAmount = money)
                 .AddTo(disposable);
             
             tutorialModel.ShouldShowTooltip
                 .Subscribe(UpdateTooltipVisibility)
                 .AddTo(disposable);
+
+            SetMineID(0);
         }
 
         private void UpdateTooltipVisibility(bool shouldShowTooltip)
         {
             _view.TooltipVisible = shouldShowTooltip;
+        }
+
+        public void SetMineID(int mineID)
+        {
+            _view.MineLabel = mineID+1;
         }
     }
 }

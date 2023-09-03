@@ -26,12 +26,12 @@ namespace GameCode.Init
             var disposable = new CompositeDisposable().AddTo(this);
 
             var tutorialModel = new TutorialModel();
-            var financeModel = new FinanceModel();
+            var financeModel = new FinanceModel(_gameConfig.InitialMoneyPerMine);
                         
             new CameraController(_cameraView, tutorialModel);
 
             //Hud
-            new HudController(_hudView, financeModel, tutorialModel, disposable);
+            var hudController = new HudController(_hudView, financeModel, tutorialModel, disposable);
             
             //Mineshaft
             var mineshaftCollectionModel = new MineshaftCollectionModel();
@@ -47,10 +47,10 @@ namespace GameCode.Init
             new WarehouseController(_warehouseView, warehouseModel, elevatorModel, _gameConfig, disposable);
 
             //GameProgress
-            var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, disposable);
+            var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, financeModel, disposable);
 
             //MineSwitch
-            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress);
+            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress, hudController);
         }
     }
 }
