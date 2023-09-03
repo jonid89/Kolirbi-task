@@ -78,8 +78,8 @@ namespace GameCode.Elevator
             _mineSwitching.Value = true;
             
             SkillMultiplier = Mathf.Pow(_config.ActorSkillIncrementPerShaft, 1) * Mathf.Pow(_config.ActorUpgradeSkillIncrement, level - 1);
+            _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, level - 1);
             _level.Value = level;
-            _upgradePrice.Value = BasePrice * Mathf.Pow(_config.ActorUpgradePriceIncrement, _level.Value - 1);
             StashAmount.Value = 0;
 
             _mineSwitching.Value = false;

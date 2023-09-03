@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System;
+using UnityEngine;
 
 namespace GameCode.Mineshaft
 {
@@ -35,6 +37,15 @@ namespace GameCode.Mineshaft
         public MineshaftView GetView(int mineshaftNumber)
         {
             return _views[mineshaftNumber];
+        }
+
+        public bool IsViewActive(int mineshaftNumber)
+        {
+            if(mineshaftNumber <= GetCount() && _views[mineshaftNumber].gameObject.activeSelf)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

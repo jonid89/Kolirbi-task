@@ -86,7 +86,9 @@ namespace GameCode.Elevator
             if (!working)
             {
                 if(_workerModel.State == WorkerState.LOAD 
-                    && (_workerModel.CarryingAmount.Value >= _workerModel.CarryingCapacity.Value || _targetMineshaftNumber >= _mineshaftCollectionModel.GetCount()))
+                    && (_workerModel.CarryingAmount.Value >= _workerModel.CarryingCapacity.Value 
+                        || _targetMineshaftNumber >= _mineshaftCollectionModel.GetCount() 
+                        || !_mineshaftCollectionModel.IsViewActive(_targetMineshaftNumber+1)))
                 {
                     _workerModel.State = WorkerState.DROP;
                     _targetMineshaftNumber = 1;
