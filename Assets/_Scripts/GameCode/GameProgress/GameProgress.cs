@@ -17,7 +17,8 @@ public class GameProgress
     
     private int _numberOfMines;
     private int _currentMineID = 0;
-    private List<double> _minesMoney = new List<double>();
+    private Dictionary<int, double> _minesMoney = new Dictionary<int, double>();
+
     
     private int[] _elevatorLevels = new int[] {1,1};
     private int _elevatorLevel;
@@ -55,8 +56,8 @@ public class GameProgress
     private void SaveMine()
     {
         //Saving mine's Money
-        _minesMoney.Insert(_currentMineID, _financeModel.Money.Value);
-        //Debug.Log("Money Saved on" + _currentMineID + ": " + _minesMoney[_currentMineID]);
+        //_minesMoney. Insert(_currentMineID, _financeModel.Money.Value);
+        _minesMoney[_currentMineID] = _financeModel.Money.Value;
         
         //Saving Elevator Level
         _elevatorLevels[_currentMineID] = _elevatorModel.Level.Value;
@@ -79,10 +80,8 @@ public class GameProgress
     private void LoadMine()
     {
         //Loading mine's Money
-        _financeModel.SetMineMoney(_minesMoney[_currentMineID]);
-        /*_financeModel.DrawResource(_financeModel.Money.Value);
-        _financeModel.AddResource(_minesMoney[_currentMineID]);*/
-        //Debug.Log("Money Loaded on" + _currentMineID + ": " +_minesMoney[_currentMineID]);
+        _financeModel.DrawResource(_financeModel.Money.Value);
+        _financeModel.AddResource(_minesMoney[_currentMineID]);
         
         //Loading Elevator Level
         _elevatorLevel = _elevatorLevels[_currentMineID];
@@ -128,7 +127,7 @@ public class GameProgress
             _minesMineShaftsLevels[i].Add(1);
 
             // Initialize _minesMoney with initial money amount each mine
-            _minesMoney.Add(_financeModel.InitialMoneyPerMine);
+            _minesMoney[i] = _financeModel.InitialMoneyPerMine;
         }
     }
     

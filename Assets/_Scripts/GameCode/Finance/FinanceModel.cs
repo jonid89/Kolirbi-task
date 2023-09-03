@@ -44,10 +44,5 @@ namespace GameCode.Finance
 
             return result;
         }
-
-        public void SetMineMoney(double amount)
-        {
-            _money.Value = amount;
-        }
     }
 }
