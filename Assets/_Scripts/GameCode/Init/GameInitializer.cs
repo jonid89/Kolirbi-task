@@ -16,6 +16,7 @@ namespace GameCode.Init
         [SerializeField] private HudView _hudView;
         [SerializeField] private CameraView _cameraView;
         [SerializeField] private MineSwitchView _mineSwitchView;
+        [SerializeField] private HudButtonView _hudButtonView;
 
         [SerializeField] private ElevatorView _elevatorView;
         [SerializeField] private WarehouseView _warehouseView;
@@ -50,7 +51,10 @@ namespace GameCode.Init
             var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, financeModel, disposable);
 
             //MineSwitch
-            var mineSwitchController = new MineSwitchController(_mineSwitchView, gameProgress, hudController);
+            new MineSwitchController(_mineSwitchView, gameProgress, hudController);
+            new HudButtonController(_hudButtonView, disposable);
+
+
         }
     }
 }

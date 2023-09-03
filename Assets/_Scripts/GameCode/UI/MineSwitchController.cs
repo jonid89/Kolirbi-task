@@ -2,43 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using GameCode.UI;
 
-public class MineSwitchController
+namespace GameCode.UI
 {
-    private readonly MineSwitchView _view;
-    private readonly GameProgress _gameProgress;
-    private readonly HudController _hudController;
-    private List<Button> _mineSwitchButtons = new List<Button>();
-    
-    public MineSwitchView View => _view;
-
-    public MineSwitchController(MineSwitchView view, GameProgress gameProgress, HudController hudController)
+    public class MineSwitchController
     {
-        _view = view;
-        _gameProgress = gameProgress;
-        _hudController = hudController;
+        private readonly MineSwitchView _view;
+        private readonly GameProgress _gameProgress;
+        private readonly HudController _hudController;
+        private List<Button> _mineSwitchButtons = new List<Button>();
         
-        _mineSwitchButtons = _view.MineSwitchButtons;
-        AddButtonListeners();
-        _gameProgress.SetMinesCount(_mineSwitchButtons.Count);
-    }
+        public MineSwitchView View => _view;
 
-    
-    private void AddButtonListeners()
-    {
-        for(int i = 0; i < _mineSwitchButtons.Count; i++)
+        public MineSwitchController(MineSwitchView view, GameProgress gameProgress, HudController hudController)
         {
-            int buttonIndex = i;
-            _mineSwitchButtons[i].onClick.AddListener(() => OnButtonClicked(buttonIndex));
+            _view = view;
+            _gameProgress = gameProgress;
+            _hudController = hudController;
+            
+            _mineSwitchButtons = _view.MineSwitchButtons;
+            AddButtonListeners();
+            _gameProgress.SetMinesCount(_mineSwitchButtons.Count);
+        }
+
+        private void AddButtonListeners()
+        {
+            for(int i = 0; i < _mineSwitchButtons.Count; i++)
+            {
+                int buttonIndex = i;
+                _mineSwitchButtons[i].onClick.AddListener(() => OnButtonClicked(buttonIndex));
+            }
+        }
+
+        private void OnButtonClicked(int buttonIndex)
+        {
+            _gameProgress.SwitchToMine(buttonIndex);
+            _hudController.SetMineID(buttonIndex);
         }
     }
-
-    private void OnButtonClicked(int buttonIndex)
-    {
-        _gameProgress.SwitchToMine(buttonIndex);
-        _hudController.SetMineID(buttonIndex);
-    }
-    
-
 }
