@@ -57,6 +57,7 @@ namespace GameCode.UI
 
             _moveSubscription = Observable.EveryUpdate()
                 .TakeWhile(_ => _isMoving.Value)
+                .TakeWhile(_ => Vector2.Distance(_hudButtonView.TopImagePosition, targetPosition) > 0.1f)
                 .Subscribe(_ =>
                 {
                     Debug.Log("Lerping");

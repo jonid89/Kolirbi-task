@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
@@ -12,7 +13,8 @@ namespace GameCode.UI
         private readonly MineSwitchView _view;
         private readonly GameProgress _gameProgress;
         private readonly HudController _hudController;
-        private readonly CompositeDisposable _disposable;
+        private readonly CompositeDisposable _disposable;   
+        private IDisposable _moveSubscription;
         private List<Button> _mineSwitchButtons = new List<Button>();
         public MineSwitchView View => _view;
 
@@ -53,14 +55,15 @@ namespace GameCode.UI
             else if (tag == "Close" || tag == "SwitchMine")
             {
                 _view.TransformPosition = _view.InitialPosition;
+                _moveSubscription.Dispose();
             }
         }
 
 
         private void OpenPanelAnimation()
         {
-            Observable.EveryUpdate()
-                .TakeWhile(_ => Vector2.Distance(_view.TransformPosition, _view.OpenedPosition) > 1f)
+            _moveSubscription = Observable.EveryUpdate()
+                .TakeWhile(_ => Vector2.Distance(_view.TransformPosition, _view.OpenedPosition) > 10f)
                 .Subscribe(_ =>
                 {
                     _view.TransformPosition = Vector2.Lerp(_view.TransformPosition, _view.OpenedPosition, Time.deltaTime * _view.AnimationSpeed);
