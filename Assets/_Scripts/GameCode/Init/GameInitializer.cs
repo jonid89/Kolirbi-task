@@ -15,9 +15,9 @@ namespace GameCode.Init
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private HudView _hudView;
         [SerializeField] private CameraView _cameraView;
-        [SerializeField] private MineSwitchView _mineSwitchView;
-        [SerializeField] private HudButtonView _hudButtonView;
-
+        [SerializeField] private MineSwitchView _mineswitchPanelView;
+        [SerializeField] private HudButtonView _mapButtonView;
+        [SerializeField] private HudButtonView _closeButtonView;
         [SerializeField] private ElevatorView _elevatorView;
         [SerializeField] private WarehouseView _warehouseView;
         [SerializeField] private Transform _mineshaftStartingPosition;
@@ -51,8 +51,17 @@ namespace GameCode.Init
             var gameProgress = new GameProgress(warehouseModel, elevatorModel, mineshaftCollectionModel, financeModel, disposable);
 
             //MineSwitch
-            new MineSwitchController(_mineSwitchView, gameProgress, hudController);
-            new HudButtonController(_hudButtonView, disposable);
+            var mineswitchController = new MineSwitchController(_mineswitchPanelView, gameProgress, hudController, disposable);
+            
+            new HudButtonController(_mapButtonView, mineswitchController, disposable);
+            new HudButtonController(_closeButtonView, mineswitchController, disposable);
+    
+            foreach (var mineswitchButton in _mineswitchPanelView.MineSwitchButtons)
+            {
+                HudButtonView mineswitchButtonView = mineswitchButton.gameObject.GetComponent<HudButtonView>();
+                new HudButtonController(mineswitchButtonView, mineswitchController, disposable);
+            }
+                
 
 
         }

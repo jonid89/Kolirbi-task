@@ -22,6 +22,10 @@ namespace GameCode.UI
             set => _topImage.position = value;
         }
         public Button HudButton => _button;
+        public string ButtonTag
+        {
+            get => this.gameObject.tag;
+        }
         private readonly IReactiveProperty<bool> _buttonDown = new ReactiveProperty<bool>(false);
         public IReadOnlyReactiveProperty<bool> ButtonDown => _buttonDown;
         

@@ -11,56 +11,72 @@ namespace GameCode.UI
     public class HudButtonController
     {
         private readonly HudButtonView _hudButtonView;
+        private readonly MineSwitchController _mineswitchPanelController;
         private readonly CompositeDisposable _disposable;        
         private IDisposable _moveSubscription;
         private Vector2 _initialTopImagePosition;
-        private bool isMoving = false;
+        private readonly IReactiveProperty<bool> _isMoving = new ReactiveProperty<bool>(false);
+        public IReadOnlyReactiveProperty<bool> IsMoving => _isMoving;
+        private string _buttonTag = "Map";
+        public string ButtonTag => _buttonTag;
 
-        public HudButtonController(HudButtonView hudButtonView, CompositeDisposable disposable)
+
+        public HudButtonController(HudButtonView hudButtonView, MineSwitchController mineswitchPanelController, CompositeDisposable disposable)
         {
             _hudButtonView = hudButtonView;
+            _mineswitchPanelController = mineswitchPanelController;
             _disposable = disposable;
 
             _initialTopImagePosition = _hudButtonView.TopImagePosition;
             
             _hudButtonView.ButtonDown
-                .Subscribe(_ => HandleButtonPress());
+                .Skip(1)
+                .Subscribe(buttonPressed => HandleButtonPress(buttonPressed))
+                .AddTo(disposable);
         }
 
-        private void HandleButtonPress()
+        private void HandleButtonPress(bool buttonPressed)
         {
-            if (_hudButtonView.ButtonDown.Value)
+            
+            if (buttonPressed)
             {
                 ButtonPressed();
             }
-            if (!_hudButtonView.ButtonDown.Value)
+            else if (!buttonPressed)
             {
-                ButtonRelease();
+                ButtonReleased();
             }
         }
 
         private void ButtonPressed()
         {
-            isMoving = true;
+            _isMoving.Value = true;
             Vector2 targetPosition = _hudButtonView.BottomImagePosition;
 
             float speed = 5.0f;
 
             _moveSubscription = Observable.EveryUpdate()
-                .TakeWhile(_ => isMoving)
+                .TakeWhile(_ => _isMoving.Value)
                 .Subscribe(_ =>
                 {
                     _hudButtonView.TopImagePosition = Vector2.Lerp(_hudButtonView.TopImagePosition, targetPosition, Time.deltaTime * speed);
-                });
+                })
+                .AddTo(_disposable);
         }
 
-        public void ButtonRelease()
+        private void ButtonReleased()
         {
-            isMoving = false;
-            
-            //_moveSubscription.Dispose();
-
+            _buttonTag = _hudButtonView.ButtonTag;
             _hudButtonView.TopImagePosition = _initialTopImagePosition;
+            
+            _mineswitchPanelController.OnButtonClicked(_buttonTag);
+
+            
+            _isMoving.Value = false;
+            
+            _moveSubscription.Dispose();
+
         }
+
     }
 }
