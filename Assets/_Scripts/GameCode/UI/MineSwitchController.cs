@@ -59,12 +59,10 @@ namespace GameCode.UI
 
         private void OpenPanelAnimation()
         {
-            Debug.Log("OpenPanelAnimation called");
             Observable.EveryUpdate()
                 .TakeWhile(_ => Vector2.Distance(_view.TransformPosition, _view.OpenedPosition) > 1f)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Lerping");
                     _view.TransformPosition = Vector2.Lerp(_view.TransformPosition, _view.OpenedPosition, Time.deltaTime * _view.AnimationSpeed);
                 })
                 .AddTo(_disposable);           

@@ -59,6 +59,7 @@ namespace GameCode.UI
                 .TakeWhile(_ => _isMoving.Value)
                 .Subscribe(_ =>
                 {
+                    Debug.Log("Lerping");
                     _hudButtonView.TopImagePosition = Vector2.Lerp(_hudButtonView.TopImagePosition, targetPosition, Time.deltaTime * speed);
                 })
                 .AddTo(_disposable);
@@ -67,15 +68,15 @@ namespace GameCode.UI
         private void ButtonReleased()
         {
             _buttonTag = _hudButtonView.ButtonTag;
-            _hudButtonView.TopImagePosition = _initialTopImagePosition;
-            
-            _mineswitchPanelController.OnButtonClicked(_buttonTag);
-
             
             _isMoving.Value = false;
             
-            _moveSubscription.Dispose();
+            _mineswitchPanelController.OnButtonClicked(_buttonTag);
 
+            _moveSubscription.Dispose();
+            
+            _hudButtonView.TopImagePosition = _initialTopImagePosition;
+            
         }
 
     }

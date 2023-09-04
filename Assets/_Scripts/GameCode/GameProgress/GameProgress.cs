@@ -18,7 +18,6 @@ public class GameProgress
     private int _numberOfMines;
     private int _currentMineID = 0;
     private Dictionary<int, double> _minesMoney = new Dictionary<int, double>();
-
     
     private int[] _elevatorLevels = new int[] {1,1};
     private int _elevatorLevel;
@@ -44,11 +43,12 @@ public class GameProgress
 
     public void SwitchToMine(int switchMineID)
     {
-        SaveMine();
-        
-        _currentMineID = switchMineID;
-        
-        LoadMine();
+        if(_currentMineID != switchMineID)
+        {
+            SaveMine();
+            _currentMineID = switchMineID;
+            LoadMine();
+        }
 
         Debug.Log("Mine loaded: " + _currentMineID );
     }
@@ -56,7 +56,6 @@ public class GameProgress
     private void SaveMine()
     {
         //Saving mine's Money
-        //_minesMoney. Insert(_currentMineID, _financeModel.Money.Value);
         _minesMoney[_currentMineID] = _financeModel.Money.Value;
         
         //Saving Elevator Level
