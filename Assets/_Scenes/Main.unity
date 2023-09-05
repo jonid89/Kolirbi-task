@@ -2832,7 +2832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 989911878}
   m_Layer: 0
-  m_Name: Mine1
+  m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4978,14 +4978,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 989911878}
     m_Modifications:
-    - target: {fileID: 2028726972, guid: ac087666426c7dd4caaf7b0b22f4334b, type: 3}
-      propertyPath: m_Name
-      value: GoButton1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2029488794, guid: ac087666426c7dd4caaf7b0b22f4334b, type: 3}
-      propertyPath: m_Name
-      value: GoButton2
-      objectReference: {fileID: 0}
     - target: {fileID: 198845203661073323, guid: ac087666426c7dd4caaf7b0b22f4334b,
         type: 3}
       propertyPath: m_Name
@@ -5095,21 +5087,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 798896357555383501, guid: ac087666426c7dd4caaf7b0b22f4334b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 798896357555383501, guid: ac087666426c7dd4caaf7b0b22f4334b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 798896357555383501, guid: ac087666426c7dd4caaf7b0b22f4334b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac087666426c7dd4caaf7b0b22f4334b, type: 3}

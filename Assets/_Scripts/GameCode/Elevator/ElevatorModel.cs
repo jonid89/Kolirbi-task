@@ -36,9 +36,7 @@ namespace GameCode.Elevator
         }
 
         public double SkillMultiplier { get; set; }
-
         public IReadOnlyReactiveProperty<bool> CanUpgrade { get; }
-
         public IReactiveProperty<double> StashAmount { get; }
         public IReadOnlyReactiveProperty<double> UpgradePrice => _upgradePrice;
         public IReadOnlyReactiveProperty<int> Level => _level;

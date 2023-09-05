@@ -60,7 +60,6 @@ namespace GameCode.UI
                 .TakeWhile(_ => Vector2.Distance(_hudButtonView.TopImagePosition, targetPosition) > 0.1f)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Lerping");
                     _hudButtonView.TopImagePosition = Vector2.Lerp(_hudButtonView.TopImagePosition, targetPosition, Time.deltaTime * speed);
                 })
                 .AddTo(_disposable);

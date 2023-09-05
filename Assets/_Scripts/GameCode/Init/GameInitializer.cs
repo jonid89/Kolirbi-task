@@ -5,6 +5,7 @@ using GameCode.Mineshaft;
 using GameCode.Tutorial;
 using GameCode.UI;
 using GameCode.Warehouse;
+using GameCode.Progress;
 using UniRx;
 using UnityEngine;
 

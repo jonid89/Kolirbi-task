@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using UnityEditor.Search;
+using GameCode.Progress;
 
 namespace GameCode.UI
 {
@@ -54,14 +55,14 @@ namespace GameCode.UI
             }
             else if (tag == "Close" || tag == "SwitchMine")
             {
-                _view.TransformPosition = _view.InitialPosition;
-                _moveSubscription.Dispose();
+                ClosePanel();
             }
         }
 
-
         private void OpenPanelAnimation()
         {
+            _view.DarkOverlay.SetActive(true);
+
             _moveSubscription = Observable.EveryUpdate()
                 .TakeWhile(_ => Vector2.Distance(_view.TransformPosition, _view.OpenedPosition) > 10f)
                 .Subscribe(_ =>
@@ -70,5 +71,12 @@ namespace GameCode.UI
                 })
                 .AddTo(_disposable);           
         }        
+
+        private void ClosePanel()
+        {
+            _view.DarkOverlay.SetActive(false);
+            _view.TransformPosition = _view.InitialPosition;
+            _moveSubscription.Dispose();
+        }
     }
 }
