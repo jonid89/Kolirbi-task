@@ -45,8 +45,6 @@ namespace GameCode.Elevator
         {
             if (_financeModel.Money.Value < _upgradePrice.Value) return;
             
-            Debug.Log("Elevator Level: "+_level.Value);
-
             SkillMultiplier *= _config.ActorUpgradeSkillIncrement;
             var upgradePrice = _upgradePrice.Value;
             _upgradePrice.Value *= _config.ActorUpgradePriceIncrement;
@@ -81,7 +79,6 @@ namespace GameCode.Elevator
             StashAmount.Value = 0;
 
             _mineSwitching.Value = false;
-            
         }
 
     }

@@ -37,7 +37,9 @@ namespace GameCode.Elevator
                 .AddTo(disposable);
 
             //When the MineSwitching bool of the _elevatorModel becomes true, the listener calls OnMineSwitch method
-            _elevatorModel.MineSwitching.Subscribe(_ => OnMineSwitch())
+            _elevatorModel.MineSwitching        
+                .Where(mineSwitching => mineSwitching) 
+                .Subscribe(_ => OnMineSwitch())
                 .AddTo(_disposable);
         }
 
