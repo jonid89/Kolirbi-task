@@ -48,7 +48,6 @@ namespace GameCode.UI
         
         public void OnButtonClicked(string tag)
         {
-            Debug.Log("tag: " + tag);
             if (tag == "Map")
             {
                 OpenPanelAnimation();
