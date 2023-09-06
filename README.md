@@ -7,10 +7,10 @@ The implementation uses the same mine elements, then saves the values when mines
 
 ### Changes
 
-- `GameProgress` saves and loads Game Progress
-- Area Models and Worker controllers have a Method to handle the Level change
-- `HudButtonController` handles the UI buttons animations
-- `MineSwitchController` Handles the Mine election panel.
+- `GameProgress` saves and loads Game Progress.
+- Area Models and Worker controllers have a Method to handle the Level change when mineswitching.
+- `HudButtonController` handles the UI buttons animations.
+- `MineSwitchController` Handles the Mine selection panel.
 
 ## Expandability
 
@@ -26,12 +26,15 @@ The implementation uses the same mine elements, then saves the values when mines
 ## Possible Next Steps and Improvements
 
 Depending on the Design needs and direction of the project, next steps could be:
-- Save StashAmount when switching mines 
-- Make a Mine class to save mine parameters
-- Adding more mines can easily be done by adding more buttons to MineSwitchView
-- Make a config for Mines and possibly add Mines names and MineID
-- Separate GameProgess's saving and loading functionalities into other scripts
+- Save StashAmount when switching mines.
+- Make a Mine class to save mine parameters.
+- Adding more mines can easily be done by adding more buttons to MineSwitchView.
+- Make a config for Mines and possibly add Mines names and MineID.
+- Separate GameProgess's saving and loading functionalities into other scripts.
+- Make the panel reactive to the amount of MineSwitch elements.
 
 ## Testing
 
 The Initial Amount of Money for new mines can be set in the Game Config in order to facilitate testing.
+
+
