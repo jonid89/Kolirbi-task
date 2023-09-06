@@ -69,7 +69,7 @@ namespace GameCode.Elevator
             return result;
         }
 
-        public void MineSwitch(int level)
+        public void SetAreaLevel(int level)
         {
             _mineSwitching.Value = true;
             

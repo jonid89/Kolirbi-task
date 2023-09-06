@@ -11,7 +11,6 @@ namespace GameCode.Warehouse
         private readonly GameConfig _config;
         private readonly FinanceModel _financeModel;
         
-        
         private const double BasePrice = 60;
         private readonly IReactiveProperty<double> _upgradePrice;
         private readonly IReactiveProperty<int> _level;
@@ -55,7 +54,7 @@ namespace GameCode.Warehouse
             _level.Value++;
         }
 
-        public void MineSwitch(int level)
+        public void SetAreaLevel(int level)
         {
             _mineSwitching.Value = true;
             

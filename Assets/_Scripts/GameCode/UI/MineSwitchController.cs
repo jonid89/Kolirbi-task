@@ -26,21 +26,21 @@ namespace GameCode.UI
             _hudController = hudController;
             _disposable = disposable;
             
-            _mineSwitchButtons = _view.MineSwitchButtons;
-            AddButtonListeners();
-            _gameProgress.SetMinesCount(_mineSwitchButtons.Count);
+            GetMineSwitchButton();
         }
 
-        private void AddButtonListeners()
+        private void GetMineSwitchButton()
         {
+            _mineSwitchButtons = _view.MineSwitchButtons;
             for(int i = 0; i < _mineSwitchButtons.Count; i++)
             {
                 int buttonIndex = i;
-                _mineSwitchButtons[i].onClick.AddListener(() => MineSwitchedClicked(buttonIndex));
+                _mineSwitchButtons[i].onClick.AddListener(() => MineSwitchClicked(buttonIndex));
             }
+            _gameProgress.SetMinesCount(_mineSwitchButtons.Count);
         }
 
-        private void MineSwitchedClicked(int buttonIndex)
+        private void MineSwitchClicked(int buttonIndex)
         {
             _gameProgress.SwitchToMine(buttonIndex);
             _hudController.SetMineID(buttonIndex);

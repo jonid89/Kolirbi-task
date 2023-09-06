@@ -53,6 +53,26 @@ namespace GameCode.Progress
             Debug.Log("Mine loaded. MineID: " + _currentMineID );
         }
 
+        public void SetMinesCount(int count)
+        {
+            _numberOfMines = count;
+            InitializeMineLevelsList();
+        }
+
+        private void InitializeMineLevelsList()
+        {
+            for (int i = 0; i < _numberOfMines; i++)
+            {
+                // Initialize _minesMineShaftsLevels with 1 mineshaft on level 1 for each mine
+                _mineShaftsPerMine.Add(1); //.Insert(i, 1);
+                _minesMineShaftsLevels.Add(new List<int>());
+                _minesMineShaftsLevels[i].Add(1);
+
+                // Initialize _minesMoney with initial money amount each mine
+                _minesMoney[i] = _financeModel.InitialMoneyPerMine;
+            }
+        }
+
         private void SaveMine()
         {
             //Saving mine's Money
@@ -84,11 +104,11 @@ namespace GameCode.Progress
             
             //Loading Elevator Level
             _elevatorLevel = _elevatorLevels[_currentMineID];
-            _elevatorModel.MineSwitch(_elevatorLevel);
+            _elevatorModel.SetAreaLevel(_elevatorLevel);
 
             //Loading Warehouse Level
             _warehouseLevel = _warehouseLevels[_currentMineID];
-            _warehouseModel.MineSwitch(_warehouseLevel);
+            _warehouseModel.SetAreaLevel(_warehouseLevel);
             
             //Iterate through List of mineshafts on Current Mine to load Active mineshafts Level
             for (int i = 1; i <= _mineshaftCollectionModel.GetCount(); i++)
@@ -97,40 +117,17 @@ namespace GameCode.Progress
                 {
                     _mineshaftCollectionModel.GetView(i).gameObject.SetActive(true);
                     _mineShaftLevelLoad = _minesMineShaftsLevels[_currentMineID][i-1];
-                    _mineshaftCollectionModel.GetModel(i).MineSwitch(_mineShaftLevelLoad);
+                    _mineshaftCollectionModel.GetModel(i).SetAreaLevel(_mineShaftLevelLoad);
                     if(i == _mineShaftsPerMine[_currentMineID])
                     {
                         _mineshaftCollectionModel.GetView(i).NextShaftView.gameObject.SetActive(true);
                     }
                 }
                 else{
-                    _mineshaftCollectionModel.GetModel(i).MineSwitch(1);
+                    _mineshaftCollectionModel.GetModel(i).SetAreaLevel(1);
                     _mineshaftCollectionModel.GetView(i).gameObject.SetActive(false);
                 }
             }
-        }
-        
-        public void SetMinesCount(int count)
-        {
-            _numberOfMines = count;
-            InitializeMineLevelsList();
-        }
-
-        private void InitializeMineLevelsList()
-        {
-            for (int i = 0; i < _numberOfMines; i++)
-            {
-                // Initialize _minesMineShaftsLevels with 1 mineshaft on level 1 for each mine
-                _mineShaftsPerMine.Add(1); //.Insert(i, 1);
-                _minesMineShaftsLevels.Add(new List<int>());
-                _minesMineShaftsLevels[i].Add(1);
-
-                // Initialize _minesMoney with initial money amount each mine
-                _minesMoney[i] = _financeModel.InitialMoneyPerMine;
-            }
-        }
-    
- 
+        } 
     }
-
 }
